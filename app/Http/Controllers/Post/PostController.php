@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -62,6 +67,74 @@ class PostController extends Controller
             'travelPost_cover' => $travelPost_cover,
             'travelPost_under' => $travelPost_under,
         ]);
+    }
+
+    public function detail($id)
+    {
+
+        $data = Post::find($id);
+
+        //User - Author
+        $user = User::find($data->user_id);
+
+        //Popular post
+        $popularPost = Post::take(3)->orderBy('id', 'desc')->get();
+
+        //Join table categories
+
+        $categories = DB::table('categories')
+            ->join('posts', 'posts.category', '=', 'categories.name')
+            ->select('categories.name', 'categories.id', DB::raw('COUNT(posts.category) as total'))
+            ->groupBy('posts.category')
+            ->get();
+
+
+        //Comments
+        $cmtPost = Comment::where('post_id', $id)->get();
+
+
+        //More Blog Post
+        $others = Post::take(4)
+            ->orderBy('id', 'desc')
+            ->where('id', '!=', $id)
+            ->get();
+
+        $numberCmt = $cmtPost->count();
+
+
+        return view('components.posts.detail', [
+            'data' => $data,
+            'user' => $user,
+            'popularPost' => $popularPost,
+            'categories' => $categories,
+            'cmtPost' => $cmtPost,
+            'numberCmt' => $numberCmt,
+            'others' => $others,
+        ]);
+    }
+
+
+    public function storeComment(Request $req)
+    {
+        if (!Auth::check()) {
+
+            // Session::put('intended_url', url()->current());
+            return redirect()->route('login')->with('message', 'You must login to use this feature!!!');
+
+            // return redirect()->route('login')->with('message', 'You must log in to use this feature');
+        }
+
+        $comment = Comment::insert([
+            'comment' => $req->comment,
+            'user_id' => Auth::user()->id,
+            'user_name' => Auth::user()->name,
+            'post_id' => $req->post_id,
+        ]);
+
+
+        return redirect()->route('posts.detail', $req->post_id);
+
+
     }
 
 }

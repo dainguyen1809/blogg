@@ -6,6 +6,11 @@
             <div class="col-md-8">
                 <div class="comment-form-wrap pt-5">
                     <h3 class="mb-3">Login</h3>
+                    @if (Session::has('message'))
+                        <div class="alert alert-danger">
+                            <span class="text-danger">{{ Session::get('message') }}</span>
+                        </div>
+                    @endif
                     <form action="{{ route('login') }}" method="post" class="p-2 bg-light">
                         @csrf
                         <div class="form-group">
