@@ -14,19 +14,19 @@
                 </div>
                 <div class="comment-body">
                     <h3>{{ $user->name }}</h3>
-                    <div class="meta">{{ $cmt->created_at }}</div>
+                    <div class="meta">{{ $cmt->created_at->diffForHumans() }}</div>
                     <p>
                         {{ $cmt->comment }}
                     </p>
                     <p><a href="#" class="reply rounded">Reply</a></p>
                 </div>
             </li>
-        @endforeach()
+        @endforeach
     </ul>
     <!-- END comment-list -->
 
     <div class="comment-form-wrap pt-5">
-        <h3 class="mb-3">Leave a comment</h3>
+        <h3 class="mb-3">{{ __('Leave a comment') }}</h3>
         <form action="{{ route('posts.comment') }}" method="post" class="p-2 bg-light">
             @csrf
             <input type="hidden" name="post_id" value="{{ $data->id }}" class="form-control border"

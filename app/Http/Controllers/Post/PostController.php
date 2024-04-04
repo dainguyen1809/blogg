@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
@@ -17,9 +18,9 @@ class PostController extends Controller
     public function index()
     {
 
-        $Lposts = Post::orderBy('created_at', 'desc')->take(2)->get();
+        $Lposts = Post::take(2)->orderBy('category', 'desc')->get();
         $Mposts = Post::take(1)->orderBy('id', 'desc')->get();
-        $Rposts = Post::take(2)->orderBy('title', 'desc')->get();
+        $Rposts = Post::take(2)->orderBy('title', 'asc')->get();
 
         //Business
         $businessPost = Post::where('category', 'Business')->take(2)->get();
@@ -54,7 +55,7 @@ class PostController extends Controller
             ->get();
 
 
-        return view('components.posts.index', [
+        return view('components.post.index', [
             'Lposts' => $Lposts,
             'Mposts' => $Mposts,
             'Rposts' => $Rposts,
@@ -77,6 +78,8 @@ class PostController extends Controller
         //User - Author
         $user = User::find($data->user_id);
 
+        // dd($user);
+
         //Popular post
         $popularPost = Post::take(3)->orderBy('id', 'desc')->get();
 
@@ -95,14 +98,14 @@ class PostController extends Controller
 
         //More Blog Post
         $others = Post::take(4)
-            ->orderBy('id', 'desc')
+            ->orderBy('category', 'asc')
             ->where('id', '!=', $id)
             ->get();
 
         $numberCmt = $cmtPost->count();
 
 
-        return view('components.posts.detail', [
+        return view('components.post.detail', [
             'data' => $data,
             'user' => $user,
             'popularPost' => $popularPost,
@@ -129,12 +132,74 @@ class PostController extends Controller
             'user_id' => Auth::user()->id,
             'user_name' => Auth::user()->name,
             'post_id' => $req->post_id,
+            'created_at' => now(),
         ]);
 
+        // dd(Auth::user()->name);
 
         return redirect()->route('posts.detail', $req->post_id);
 
 
     }
 
+
+    public function createPost()
+    {
+        $categories = Category::all();
+
+        if (Auth::user()) {
+
+            return view('components.post.create', [
+                'categories' => $categories
+            ]);
+        }
+        return abort('404');
+    }
+
+    public function storePost(Request $req)
+    {
+
+        $path = 'assets/images/';
+        $imagePost = $req->images->getClientOriginalName();
+        $req->images->move(public_path($path), $imagePost);
+
+        $insertPost = Post::create([
+            'title' => $req->title,
+            'category' => $req->category,
+            'images' => $imagePost,
+            'user_id' => Auth::user()->id,
+            'user_name' => Auth::user()->name,
+            'description' => $req->description,
+            'created_at' => now(),
+        ]);
+
+        return redirect()->route('posts.create');
+
+    }
+
+    public function editPost($id)
+    {
+        $data = Post::find($id);
+
+        $categories = Category::all();
+
+        return view('components.post.edit', [
+            'data' => $data,
+            'categories' => $categories,
+        ]);
+    }
+
+
+    public function updatePost(Request $req, $id)
+    {
+        Post::find($id)->update($req->all());
+
+        return redirect()->route('posts.detail', $req->id);
+    }
+
+    public function deletePost($id)
+    {
+        Post::destroy($id);
+        return redirect()->route('posts.index');
+    }
 }

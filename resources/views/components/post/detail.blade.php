@@ -15,7 +15,7 @@
                                 <img src="{{ asset('assets/images/users/' . $user->avatar . '') }}" alt="Image"
                                     class="img-fluid" />
                             </figure>
-                            <span class="d-inline-block mt-1">{{ $data->user_name }}</span>
+                            <span class="d-inline-block mt-1">{{ $user->user_name }}</span>
                             <span>Posted in {{ $data->created_at->format('d/m/Y') }}</span>
                         </div>
                     </div>
@@ -35,10 +35,24 @@
                     <div class="pt-5">
                         <p>Categories: <a href="#">{{ $data->category }}</a></p>
                     </div>
-
+                    @auth
+                        @if (Auth::user()->id === $data->user_id)
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <a href="{{ route('posts.edit', $data->id) }}" class="btn btn-warning">Edit Post
+                                        <span class="icon-pencil"></span>
+                                    </a>
+                                </div>
+                                <div class="col-md-3">
+                                    <a href="{{ route('posts.delete', $data->id) }}" class="btn btn-danger">Delete Post
+                                        <span class="icon-trash"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+                    @endauth
 
                     @include('components.comment.comment')
-
                 </div>
 
                 <!-- END main-content -->
@@ -55,25 +69,22 @@
                                     {{ $user->bio }}
                                 </p>
                                 <p>
-                                    <a href="#" class="btn btn-primary btn-sm rounded px-2 py-2">About author</a>
+                                    <a href="{{ route('home') }}" class="btn btn-primary btn-sm rounded px-2 py-2">About
+                                        author</a>
                                 </p>
-                                {{-- <p class="social">
-                                    <a href="https://instagram.com/dainguyen.dhn/" class="p-2"><span class="icon-instagram"></span></a>
-                                    <a href="#" class="p-2"><span class="icon-facebook"></span></a>
-                                </p> --}}
                             </div>
                         </div>
                     </div>
                     <!-- END sidebar-box -->
                     <div class="sidebar-box">
                         <h3 class="heading">Popular Posts</h3>
-                        @include('components.posts.popular')
+                        @include('components.post.popular')
                     </div>
                     <!-- END sidebar-box -->
 
                     <div class="sidebar-box">
                         <h3 class="heading">Categories</h3>
-                        @include('components.posts.category')
+                        @include('components.post.category')
                     </div>
                     <!-- END sidebar-box -->
                 </div>
@@ -82,5 +93,5 @@
         </div>
     </section>
 
-    @include('components.posts.other')
+    @include('components.post.other')
 @endsection

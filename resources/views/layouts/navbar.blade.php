@@ -24,13 +24,13 @@
                         </form>
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto">
-                            <li class="active"><a href="index.html">Home</a></li>
+                            <li class="active"><a href="{{ route('posts.index') }}">Home</a></li>
 
-                            <li><a href="category.html">Culture</a></li>
-                            <li><a href="category.html">Business</a></li>
-                            <li><a href="category.html">Politics</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
-                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="#">Culture</a></li>
+                            <li><a href="#">Business</a></li>
+                            <li><a href="#">Politics</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">About Us</a></li>
                             @guest
                                 @if (Route::has('login'))
                                     <li><a href="{{ route('login') }}">Login</a></li>
@@ -40,8 +40,13 @@
                                 @endif
                             @else
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+                                    <a id="navbarDropdown d-flex justify-content-center" class="nav-link dropdown-toggle"
+                                        href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false" v-pre>
+                                        <img class="rounded-circle" style="width: 22px"
+                                            src="{{ asset('assets/images/users/' . Auth::user()->avatar . '') }}"
+                                            alt="">
                                         {{ Auth::user()->name }}
                                     </a>
 
@@ -51,10 +56,13 @@
                                                 document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
+                                        <a class="dropdown-item" href="{{ route('profile') }}">
+                                            {{ __('Profile') }}
+                                        </a>
+
                                     </div>
                                 </li>
                             @endguest
