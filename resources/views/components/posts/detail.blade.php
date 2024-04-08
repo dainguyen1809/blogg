@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="pt-5">
-                        <p>Categories: <a href="#">{{ $data->category }}</a></p>
+                        <p>Categories: <a href="{{ route('category', $data->category) }}">{{ $data->category }}</a></p>
                     </div>
                     @auth
                         @if (Auth::user()->id === $data->user_id)
@@ -52,7 +52,7 @@
                         @endif
                     @endauth
 
-                    @include('components.comment.comment')
+                    @include('components.comments.comment')
                 </div>
 
                 <!-- END main-content -->
@@ -69,7 +69,8 @@
                                     {{ $user->bio }}
                                 </p>
                                 <p>
-                                    <a href="{{ route('home') }}" class="btn btn-primary btn-sm rounded px-2 py-2">About
+                                    <a href="{{ route('user.author', $user->id) }}"
+                                        class="btn btn-primary btn-sm rounded px-2 py-2">About
                                         author</a>
                                 </p>
                             </div>
@@ -77,14 +78,12 @@
                     </div>
                     <!-- END sidebar-box -->
                     <div class="sidebar-box">
-                        <h3 class="heading">Popular Posts</h3>
-                        @include('components.post.popular')
+                        @include('components.posts.popular')
                     </div>
                     <!-- END sidebar-box -->
 
                     <div class="sidebar-box">
-                        <h3 class="heading">Categories</h3>
-                        @include('components.post.category')
+                        @include('components.posts.category')
                     </div>
                     <!-- END sidebar-box -->
                 </div>
@@ -93,5 +92,5 @@
         </div>
     </section>
 
-    @include('components.post.other')
+    @include('components.posts.other')
 @endsection

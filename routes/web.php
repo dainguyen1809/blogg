@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
@@ -14,6 +14,8 @@ Route::get('/test', [TestController::class, 'test'])->name('test');
 
 
 Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/contact', [PostController::class, 'contactPage'])->name('pages.contact');
+Route::get('/about', [PostController::class, 'aboutPage'])->name('pages.about');
 
 Route::group(['prefix' => 'posts'], function () {
     Route::get('', [PostController::class, 'index'])->name('posts.index');
@@ -24,6 +26,17 @@ Route::group(['prefix' => 'posts'], function () {
     Route::get('edit-post/{id}', [PostController::class, 'editPost'])->name('posts.edit');
     Route::post('update-post/{id}', [PostController::class, 'updatePost'])->name('posts.update');
     Route::get('delete-post/{id}', [PostController::class, 'deletePost'])->name('posts.delete');
+    Route::post('search', [PostController::class, 'search'])->name('posts.search');
 });
 
-Route::get('/profile', [UserController::class, 'index'])->name('profile');
+Route::group(['prefix' => 'categories'], function () {
+    Route::get('/{category}', [CategoryController::class, 'category'])->name('category');
+});
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/profile/{id}', [UserController::class, 'index'])->name('user.profile');
+    Route::get('/author/{id}', [UserController::class, 'profile'])->name('user.author');
+    Route::get('/edit-profile/{id}', [UserController::class, 'eidtProfile'])->name('user.edit');
+    Route::post('/update-profile/{id}', [UserController::class, 'updateProfile'])->name('user.update');
+
+});

@@ -55,7 +55,7 @@ class PostController extends Controller
             ->get();
 
 
-        return view('components.post.index', [
+        return view('components.posts.index', [
             'Lposts' => $Lposts,
             'Mposts' => $Mposts,
             'Rposts' => $Rposts,
@@ -105,7 +105,7 @@ class PostController extends Controller
         $numberCmt = $cmtPost->count();
 
 
-        return view('components.post.detail', [
+        return view('components.posts.detail', [
             'data' => $data,
             'user' => $user,
             'popularPost' => $popularPost,
@@ -149,7 +149,7 @@ class PostController extends Controller
 
         if (Auth::user()) {
 
-            return view('components.post.create', [
+            return view('components.posts.create', [
                 'categories' => $categories
             ]);
         }
@@ -183,7 +183,7 @@ class PostController extends Controller
 
         $categories = Category::all();
 
-        return view('components.post.edit', [
+        return view('components.posts.edit', [
             'data' => $data,
             'categories' => $categories,
         ]);
@@ -197,9 +197,33 @@ class PostController extends Controller
         return redirect()->route('posts.detail', $req->id);
     }
 
+    public function search(Request $req)
+    {
+        $search = $req->get('search');
+
+        $result = Post::where('title', 'like', '%' . $search . '%')->get();
+
+        return view('components.search.search', [
+            'result' => $result,
+        ]);
+    }
+
+
     public function deletePost($id)
     {
         Post::destroy($id);
         return redirect()->route('posts.index');
     }
+
+
+    public function contactPage()
+    {
+        return view('components.page.contact');
+    }
+
+    public function aboutPage()
+    {
+        return view('components.page.about');
+    }
+
 }

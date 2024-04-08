@@ -25,18 +25,23 @@
 
                         <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto">
                             <li class="active"><a href="{{ route('posts.index') }}">Home</a></li>
+                            <li class="has-children active">
+                                <a href="#">{{ __('Categories') }}</a>
+                                <ul class="dropdown">
+                                    <li><a href="{{ route('category', 'Culture') }}">Culture</a></li>
+                                    <li><a href="{{ route('category', 'Business') }}">Business</a></li>
+                                    <li><a href="{{ route('category', 'Politics') }}">Politics</a></li>
+                                </ul>
+                            </li>
 
-                            <li><a href="#">Culture</a></li>
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Politics</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">About Us</a></li>
+                            <li><a href="{{ route('pages.contact') }}">Contact</a></li>
+                            <li><a href="{{ route('pages.about') }}">About</a></li>
                             @guest
                                 @if (Route::has('login'))
-                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                    <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                                 @endif
                                 @if (Route::has('register'))
-                                    <li><a href="{{ route('register') }}">Register</a></li>
+                                    <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
                                 @endif
                             @else
                                 <li class="nav-item dropdown">
@@ -56,10 +61,11 @@
                                                 document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
                                             @csrf
                                         </form>
-                                        <a class="dropdown-item" href="{{ route('profile') }}">
+                                        <a class="dropdown-item" href="{{ route('user.profile', Auth::user()->id) }}">
                                             {{ __('Profile') }}
                                         </a>
 
@@ -74,8 +80,10 @@
                             class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light">
                             <span></span>
                         </a>
-                        <form action="#" class="search-form d-none d-lg-inline-block">
-                            <input type="text" class="form-control" placeholder="Search...">
+                        <form action="{{ route('posts.search') }}" method="post"
+                            class="search-form d-none d-lg-inline-block">
+                            @csrf
+                            <input type="text" class="form-control" name="search" placeholder="Search...">
                             <span class="bi-search"></span>
                         </form>
                     </div>

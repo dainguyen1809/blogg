@@ -1,9 +1,11 @@
 <div class="post-entry-sidebar">
+    <h3 class="heading">Popular Posts</h3>
     <ul>
         @foreach ($popularPost as $post)
             <li>
                 <a href="{{ route('posts.detail', $post->id) }}">
-                    <img src="{{ asset('assets/images/' . $post->images . '') }}" alt="Image placeholder" class="me-4 rounded" />
+                    <img src="{{ asset('assets/images/' . $post->images . '') }}" alt="Image placeholder"
+                        class="me-4 rounded" />
                     <div class="text">
                         <h4>
                             {{ Str::limit($post->title, 30) }}
