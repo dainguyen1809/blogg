@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\TestController;
@@ -8,6 +9,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
+
+Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login')->middleware('checkAuth');
+Route::post('admin/login', [AdminController::class, 'checkLogin'])->name('admin.check.login');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+});
 
 Route::get('/test', [TestController::class, 'test'])->name('test');
 

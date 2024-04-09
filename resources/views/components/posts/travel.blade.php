@@ -14,7 +14,7 @@
                 <div class="col-md-5 order-md-2">
                     <a href="{{ route('posts.detail', $post->id) }}" class="hentry img-1 h-100 gradient">
                         <div class="featured-img"
-                            style="background-image: url('{{ asset('assets/images/' . $post->images . '') }}');"></div>
+                            style="background-image: url('{{ asset('client/images/' . $post->images . '') }}');"></div>
                         <div class="text">
                             <span>{{ $post->created_at->format('d-m-Y') }}</span>
                             <h2>{{ $post->title }}</h2>
@@ -28,7 +28,7 @@
                 @foreach ($travelPost_cover as $post)
                     <a href="{{ route('posts.detail', $post->id) }}" class="hentry img-2 v-height mb30 gradient">
                         <div class="featured-img"
-                            style="background-image: url('{{ asset('assets/images/' . $post->images . '') }}');"></div>
+                            style="background-image: url('{{ asset('client/images/' . $post->images . '') }}');"></div>
                         <div class="text text-sm">
                             <span>{{ $post->created_at->format('d-m-Y') }}</span>
                             <h2>{{ $post->title }}</h2>
@@ -41,7 +41,7 @@
                         <a href="{{ route('posts.detail', $post->id) }}"
                             class="hentry v-height img-2 ms-auto float-end gradient">
                             <div class="featured-img"
-                                style="background-image: url('{{ asset('assets/images/' . $post->images . '') }}');">
+                                style="background-image: url('{{ asset('client/images/' . $post->images . '') }}');">
                             </div>
                             <div class="text text-sm">
                                 <span>{{ $post->created_at->format('d-m-Y') }}</span>

@@ -10,7 +10,7 @@
         @foreach ($cmtPost as $cmt)
             <li class="comment">
                 <div class="vcard">
-                    <img src="{{ asset('assets/images/users/' . $cmt->avatar . '') }}" alt="Image placeholder" />
+                    <img src="{{ asset('client/images/users/' . $cmt->avatar . '') }}" alt="Image placeholder" />
                 </div>
                 <div class="comment-body">
                     <h3>{{ $user->name }}</h3>

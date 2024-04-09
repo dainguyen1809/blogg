@@ -13,7 +13,7 @@
                     @foreach ($result as $post)
                         <div class="blog-entry d-flex blog-entry-search-item">
                             <a href="{{ route('posts.detail', $post->id) }}" class="img-link me-4">
-                                <img src="{{ asset('assets/images/' . $post->images . '') }}" alt="Image"
+                                <img src="{{ asset('client/images/' . $post->images . '') }}" alt="Image"
                                     class="img-fluid">
                             </a>
                             <div>

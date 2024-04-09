@@ -16,19 +16,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="{{ asset('assets/fonts/icomoon/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/fonts/flaticon/font/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/fonts/icomoon/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/fonts/flaticon/font/flaticon.css') }}">
 
     </script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/tiny-slider.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/glightbox.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/css/tiny-slider.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/css/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/css/glightbox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/css/style.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('client/css/flatpickr.min.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -47,17 +47,17 @@
     </div>
 
 
-    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/tiny-slider.js') }}"></script>
+    <script src="{{ asset('client/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('client/js/tiny-slider.js') }}"></script>
 
-    <script src="{{ asset('assets/js/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('client/js/flatpickr.min.js') }}"></script>
 
 
-    <script src="{{ asset('assets/js/aos.js') }}"></script>
-    <script src="{{ asset('assets/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('assets/js/navbar.js') }}"></script>
-    <script src="{{ asset('assets/js/counter.js') }}"></script>
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <script src="{{ asset('client/js/aos.js') }}"></script>
+    <script src="{{ asset('client/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('client/js/navbar.js') }}"></script>
+    <script src="{{ asset('client/js/counter.js') }}"></script>
+    <script src="{{ asset('client/js/custom.js') }}"></script>
 
 
 

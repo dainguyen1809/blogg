@@ -14,7 +14,7 @@
                         <div class="col-md-6">
                             <div class="blog-entry">
                                 <a href="{{ route('posts.detail', $post->id) }}" class="img-link">
-                                    <img src="{{ asset('assets/images/' . $post->images . '') }}" alt="Image"
+                                    <img src="{{ asset('client/images/' . $post->images . '') }}" alt="Image"
                                         class="img-fluid">
                                 </a>
                                 <span class="date">{{ $post->created_at->format('d-m-Y') }}</span>

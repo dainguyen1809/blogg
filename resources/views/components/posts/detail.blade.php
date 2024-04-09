@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="site-cover site-cover-sm same-height overlay single-page"
-        style="background-image: url('{{ asset('assets/images/' . $data->images . '') }}')">
+        style="background-image: url('{{ asset('client/images/' . $data->images . '') }}')">
         <div class="container">
             <div class="row same-height justify-content-center">
                 <div class="col-md-6">
@@ -12,7 +12,7 @@
                         </h2>
                         <div class="post-meta align-items-center text-center">
                             <figure class="author-figure mb-0 me-3 d-inline-block">
-                                <img src="{{ asset('assets/images/users/' . $user->avatar . '') }}" alt="Image"
+                                <img src="{{ asset('client/images/users/' . $user->avatar . '') }}" alt="Image"
                                     class="img-fluid" />
                             </figure>
                             <span class="d-inline-block mt-1">{{ $user->user_name }}</span>
@@ -61,7 +61,7 @@
                     <!-- END sidebar-box -->
                     <div class="sidebar-box">
                         <div class="bio text-center">
-                            <img src="{{ asset('assets/images/users/' . $user->avatar . '') }}" alt="Image Placeholder"
+                            <img src="{{ asset('client/images/users/' . $user->avatar . '') }}" alt="Image Placeholder"
                                 class="img-fluid mb-3" />
                             <div class="bio-body">
                                 <h2>{{ $user->name }}</h2>

@@ -50,7 +50,7 @@
                                         href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false" v-pre>
                                         <img class="rounded-circle" style="width: 22px"
-                                            src="{{ asset('assets/images/users/' . Auth::user()->avatar . '') }}"
+                                            src="{{ asset('client/images/users/' . Auth::user()->avatar . '') }}"
                                             alt="">
                                         {{ Auth::user()->name }}
                                     </a>

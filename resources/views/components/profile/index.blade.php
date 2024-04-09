@@ -17,7 +17,7 @@
                         <div class="bio-body mx-auto d-blog">
                             {{-- @dd($user->avatar) --}}
                             <img class="rounded-circle mx-auto d-block w-25"
-                                src="{{ asset('assets/images/users/' . Auth::user()->avatar . '') }}" alt="">
+                                src="{{ asset('client/images/users/' . Auth::user()->avatar . '') }}" alt="">
 
 
                             <div class="mt-3 text-center">

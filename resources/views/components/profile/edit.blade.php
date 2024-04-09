@@ -21,7 +21,7 @@
 
                                 <label for="avatar">{{ __('Old Avatar') }}</label>
                                 <img class="rounded-circle mx-auto d-block w-25"
-                                    src="{{ asset('assets/images/users/' . $user->avatar . '') }}" alt="">
+                                    src="{{ asset('client/images/users/' . $user->avatar . '') }}" alt="">
 
                                 <div class="mt-3 col-6 mx-auto">
                                     <div class="form-group">

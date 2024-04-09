@@ -4,7 +4,7 @@
         @foreach ($popularPost as $post)
             <li>
                 <a href="{{ route('posts.detail', $post->id) }}">
-                    <img src="{{ asset('assets/images/' . $post->images . '') }}" alt="Image placeholder"
+                    <img src="{{ asset('client/images/' . $post->images . '') }}" alt="Image placeholder"
                         class="me-4 rounded" />
                     <div class="text">
                         <h4>

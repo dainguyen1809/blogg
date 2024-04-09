@@ -7,7 +7,7 @@
                      <a href="{{ route('posts.detail', $post->id) }}" class="h-entry v-height gradient mb-30">
 
                          <div class="featured-img"
-                             style="background-image: url('{{ asset('assets/images/' . $post->images . '') }}');"></div>
+                             style="background-image: url('{{ asset('client/images/' . $post->images . '') }}');"></div>
 
                          <div class="text">
                              <span class="date">{{ $post->created_at->format('d-m-Y') }}</span>
@@ -21,7 +21,7 @@
                      <a href="{{ route('posts.detail', $post->id) }}" class="h-entry img-5 h-100 gradient">
 
                          <div class="featured-img"
-                             style="background-image: url('{{ asset('assets/images/' . $post->images . '') }}');"></div>
+                             style="background-image: url('{{ asset('client/images/' . $post->images . '') }}');"></div>
 
                          <div class="text">
                              <span class="date">{{ $post->created_at->format('d-m-Y') }}</span>
@@ -35,7 +35,7 @@
                      <a href="{{ route('posts.detail', $post->id) }}" class="h-entry v-height gradient mb-30">
 
                          <div class="featured-img"
-                             style="background-image: url('{{ asset('assets/images/' . $post->images . '') }}');"></div>
+                             style="background-image: url('{{ asset('client/images/' . $post->images . '') }}');"></div>
 
                          <div class="text">
                              <span class="date">{{ $post->created_at->format('d-m-Y') }}</span>
