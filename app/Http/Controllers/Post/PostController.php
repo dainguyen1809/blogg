@@ -159,7 +159,7 @@ class PostController extends Controller
     public function storePost(Request $req)
     {
 
-        $path = 'assets/images/';
+        $path = 'client/images/';
         $imagePost = $req->images->getClientOriginalName();
         $req->images->move(public_path($path), $imagePost);
 

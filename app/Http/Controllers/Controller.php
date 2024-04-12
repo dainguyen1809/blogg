@@ -9,4 +9,14 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+
+
+    protected function dynamicTitle($path)
+    {
+        $handlePath = explode('/', $path);
+        array_shift($handlePath);
+        $title = ucfirst(end($handlePath));
+        return $title;
+    }
+
 }

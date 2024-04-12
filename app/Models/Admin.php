@@ -13,11 +13,18 @@ class Admin extends Authenticatable
 {
     // use HasApiTokens, HasFactory, Notifiable;
 
+
+    const ROLE_ADMIN = 0;
+    const ROLE_AUTHOR = 1;
+
     protected $fillable = [
-        // 'name',
+        'name',
         'email',
         'password',
-        // 'avatar',
+        'avatar',
+        'position',
+        'role',
+        'created_at',
     ];
 
     /**
@@ -37,4 +44,11 @@ class Admin extends Authenticatable
     // protected $casts = [
     //     'email_verified_at' => 'datetime',
     // ];
+
+
+    public function getCustomRoles()
+    {
+        return $this->role == self::ROLE_ADMIN ? 'Admin' : 'Author';
+    }
+
 }

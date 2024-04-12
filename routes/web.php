@@ -15,6 +15,13 @@ Route::post('admin/login', [AdminController::class, 'checkLogin'])->name('admin.
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/posts', [AdminController::class, 'posts'])->name('admin.posts');
+    Route::get('/categories', [AdminController::class, 'categories'])->name('admin.categories');
+    Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    Route::get('/administrators', [AdminController::class, 'admins'])->name('admin.list');
+    Route::get('/author', [AdminController::class, 'author'])->name('admin.author');
+    Route::get('/create', [AdminController::class, 'createAdmin'])->name('admin.create-admin');
+    Route::post('/store', [AdminController::class, 'adminStore'])->name('admin.store-admin');
 });
 
 Route::get('/test', [TestController::class, 'test'])->name('test');

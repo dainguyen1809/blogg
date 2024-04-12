@@ -16,15 +16,19 @@
                 <i class="uil-home-alt"></i>
                 <span> {{ __('Dashboards') }} </span>
             </a>
-            <a href="#" class="side-nav-link">
-                <i class="uil-user"></i>
-                <span> Admin </span>
+            <a href="{{ route('admin.list') }}" class="side-nav-link">
+                <i class="uil-user-circle"></i>
+                <span> {{ __('Admin') }} </span>
             </a>
-            <a href="#" class="side-nav-link">
+            <a href="{{ route('admin.users') }}" class="side-nav-link">
+                <i class="uil-user"></i>
+                <span> {{ __('Users') }} </span>
+            </a>
+            <a href="{{ route('admin.categories') }}" class="side-nav-link">
                 <i class="uil-apps"></i>
                 <span> {{ __('Categories') }} </span>
             </a>
-            <a href="#" class="side-nav-link">
+            <a href="{{ route('admin.posts') }}" class="side-nav-link">
                 <i class="uil-file-alt"></i>
                 <span> {{ __('Posts') }} </span>
             </a>
